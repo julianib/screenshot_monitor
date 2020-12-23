@@ -4,13 +4,14 @@ from PIL import Image
 import random
 import time
 import socket
+import os
 
 app = Flask(__name__, static_url_path="/static", static_folder="static")
 
 v = 0
 last_update = 0
 
-with open("C:\\Users\\Julian\\Dropbox\\py\\Nieuwe map\\tools\\screenshot_monitor\\.auth_client.txt") as f:
+with open(f"{os.getcwd()}\\.auth.txt") as f:
     auth = f.readline()
 
 print("IP:", socket.gethostbyname(socket.gethostname()))
@@ -34,7 +35,7 @@ def post():
         img_b64_str = data["img_b64_str"]
         img_b64 = bytes(img_b64_str, "utf-8")
         img_bytes = base64.b64decode(img_b64)
-        with open("C:\\Users\\Julian\\Dropbox\\py\\Nieuwe map\\tools\\screenshot_monitor\\static\\image.png", "wb") as f:
+        with open(f"{os.getcwd()}\\static\\image.png", "wb") as f:
             f.write(img_bytes)
         print("wrote to image.png")
         global v

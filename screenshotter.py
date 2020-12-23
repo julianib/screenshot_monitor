@@ -4,21 +4,23 @@ from time import sleep
 import io
 import base64
 import json
+import os
 
-wait = 6  # loop interval
+wait = 4  # loop interval
 url = "http://localhost/post"
 headers = {
     "Content-Type": "application/json"
 }
 
-with open("C:\\Users\\Julian\\Dropbox\\py\\Nieuwe map\\tools\\screenshot_monitor\\.auth_client.txt") as f:
+print(os.getcwd())
+
+with open(f"{os.getcwd()}\\.auth.txt") as f:
     auth = f.readline()
 
 print(auth)
 
 while True:
     img = ImageGrab.grab()
-    # img = Image.open("C:\\Users\\Julian\\Dropbox\\py\\Nieuwe map\\tools\\screenshot_monitor\\test.png")  # test
 
     img_bytes = io.BytesIO()
     img.save(img_bytes, format="png")
