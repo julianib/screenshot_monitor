@@ -6,7 +6,7 @@ import base64
 import json
 import os
 
-wait = 4  # loop interval
+wait = 5  # loop interval
 url = "http://localhost/post"
 headers = {
     "Content-Type": "application/json"
@@ -21,9 +21,10 @@ print(auth)
 
 while True:
     img = ImageGrab.grab()
+    img = img.resize((1280, 720), Image.ANTIALIAS)
 
     img_bytes = io.BytesIO()
-    img.save(img_bytes, format="png")
+    img.save(img_bytes, format="png", optimize=True, quality=80)
     img_b64 = base64.b64encode(img_bytes.getvalue())
     img_b64_str = img_b64.decode("utf-8")
 
