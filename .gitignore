@@ -1,3 +1,4 @@
 .auth*.txt
 test*
 static/image.png
+.idea/
